@@ -11,14 +11,27 @@ sudo apt install \
     ca-certificates \
     curl \
     gnupg-agent \
+    net-tools \
     software-properties-common -y && \
-### Adcionando Chaves e Repositório ###   
+
+### Adcionando Chaves e Repositório Docker-CE ###   
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \    
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
-   stable"
+   stable" && \
 sudo apt-get update -y && \
 ### Instalação do Docker ####
-sudo apt-get install docker docker-compose -y &&\
-sudo docker version
+sudo apt-get install docker docker-compose -y && \
+sudo docker version && \
+
+### Adcionando Chaves e Repositório K8S ###
+sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
+sudo echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list && \
+
+
+### Instalação do K8S ####
+sudo swapoff -a  && \
+sudo apt-get update -y && \
+sudo apt-get install -y kubelet kubeadm kubectl -y && \
+sudo kubeadm config images pull
