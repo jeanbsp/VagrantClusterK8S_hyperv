@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     #end
   end
 
-  %w{worker01 worker02 worker03}.each_with_index do |name, i|
+  %w{worker1 worker2 worker3}.each_with_index do |name, i|
     config.vm.define name do |worker|
       worker.vm.box = "generic/ubuntu2004"
       worker.vm.hostname = name
