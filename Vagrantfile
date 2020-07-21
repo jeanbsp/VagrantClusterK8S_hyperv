@@ -10,10 +10,7 @@ Vagrant.configure("2") do |config|
     master01.vm.provision :shell, path: "install-docker.sh"
     master01.vm.network "forwarded_port", guest: 80, host: 9090
     master01.vm.network "private_network", ip: "192.168.200.30"
-    #master01.vm.provider "hyperv" do |v|
-    #  v.cpus = 4
-    #  v.memory = 4048
-    #end
+    
   end
 
   %w{worker1 worker2 worker3}.each_with_index do |name, i|
